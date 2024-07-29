@@ -187,9 +187,9 @@
 	  	IMP.init("imp10351001");
 		
 		//상품가격 넣는법
-		var pay = document.getElementById('pay').textContent;
-		console.log(1); 	
-		console.log(textBox);
+<!--		var pay = document.getElementById('pay').textContent;-->
+<!--		console.log(1); 	-->
+<!--		console.log(textBox);-->
 		
 	  	//결제시 전달되는 정보
 		IMP.request_pay({
@@ -197,7 +197,7 @@
 				    merchant_uid : 'merchant_' + new Date().getTime(),
 					pay_method: 'card',           // 결제방식: card(신용카드), trans(실시간계좌이체), vbank(가상계좌), phone(소액결제)
 				    name : '주문명: CRX' /*상품명*/,
-				    amount : pay /*상품 가격*/, 
+				    amount : 100 /*상품 가격*/, 
 				    buyer_email : 'iamport@siot.do'/*구매자 이메일*/,
 				    buyer_name : '구매자이름',
 				    buyer_tel : '010-1234-5678'/*구매자 연락처*/,

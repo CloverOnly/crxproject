@@ -7,6 +7,7 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <title>일반승차권 예매</title>
 <style>
 	.all{
@@ -48,12 +49,12 @@
 		width:140px;
 		display:inline;
 	}
-	#listDate{
-		
-	}
 	.checkTrain{
 		border: 2px solid white;
 		border-collapse: collapse;
+	}
+	#swapIcon{
+		font-size: 20px;
 	}
 
 </style>
@@ -90,14 +91,16 @@
                <div class="relist">
                    <br>
                    <div class="rt">
-                       <label id="start">출발역</label>
-                       <input id="start" name="txtGoStart" type="text" class="inp200" value="대전" onchange="hideResult();" title="출발역" autocomplete="off" style="ime-mode:active">
-                       <a href="#"><img src="/images/btn_tra_sch.png" alt="조회"></a>
-                       &nbsp;&nbsp;&nbsp;
-                       <label id="end">도착역</label>
-                       <input id="end" name="txtGoStart" type="text" class="inp200" value="서울" onchange="hideResult();" title="도착역" autocomplete="off" style="ime-mode:active">
-                       <a href="#"><img src="/images/btn_tra_sch.png" alt="조회"></a>    
-                   </div>
+					    <label id="start">출발역</label>
+					    <input id="pInput" name="txtGoStart" type="text" class="inp200" value="대전" title="출발역">
+					    <input type="button" value="조회" onclick="openChild()">
+					    &nbsp;&nbsp;
+						<i id="swapIcon" class="bi bi-arrow-repeat" onclick="swapStations()"></i>
+						&nbsp;&nbsp;
+					    <label id="end">도착역</label>
+					    <input id="ppInput" name="txtGoStart" type="text" class="inp200" value="서울" title="도착역">
+					    <input type="button" value="조회" onclick="openChild2()">
+					</div>
                    <br>
                    <div class="rt">
                        <label for="Date">출발일</label>
@@ -106,14 +109,22 @@
                        <label id="listtime">시간</label>
                        <select id="listtime">
                            <option value="08" selected="selected">08</option>
+						   <option value="09">09</option>		                              
                            <option value="10">10</option>
+						   <option value="11">11</option>						                              
                            <option value="12">12</option>
+						   <option value="13">13</option>					                              
                            <option value="14">14</option>
+						   <option value="15">15</option>					                              
                            <option value="16">16</option>
+						   <option value="17">17</option>						                              
                            <option value="18">18</option>
+						   <option value="19">19</option>						                           
                            <option value="20">20</option>
+						   <option value="21">21</option>						                              
                            <option value="22">22</option>
-                           <option value="24">24</option>
+						   <option value="23">23</option> 
+                           <option value="24">24</option>      
                        </select>
                        <label id="listtime">시</label>    
                    </div>
@@ -150,21 +161,7 @@
                                <option value="어린이 10명">어린이(만6~12세) 10명</option>
                            </select>
                            <label>명</label>
-                           &nbsp;&nbsp;
-                           <select id="old">
-                               <option value="경로 0명" selected="selected">경로(만 65세 이상) 0명</option>
-                               <option value="경로 1명">경로(만 65세 이상) 1명</option>
-                               <option value="경로 2명">경로(만 65세 이상) 2명</option>
-                               <option value="경로 3명">경로(만 65세 이상) 3명</option>
-                               <option value="경로 4명">경로(만 65세 이상) 4명</option>
-                               <option value="경로 5명">경로(만 65세 이상) 5명</option>
-                               <option value="경로 6명">경로(만 65세 이상) 6명</option>
-                               <option value="경로 7명">경로(만 65세 이상) 7명</option>
-                               <option value="경로 8명">경로(만 65세 이상) 8명</option>
-                               <option value="경로 9명">경로(만 65세 이상) 9명</option>
-                               <option value="경로 10명">경로(만 65세 이상) 10명</option>
-                           </select>
-                           <label>명</label>    
+                             
                        </div>
                    </div>
                    <br>
@@ -268,13 +265,53 @@
                document.getElementById('result').style.display = 'none';
            }
        
-<!-- 오늘 이전으로 선택되지 않도록 설정 -->
-
+	<!-- 오늘 이전으로 선택되지 않도록 설정 -->
 	var now_utc = Date.now()
 		var timeOff = new Date().getTimezoneOffset()*60000;
 		var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
 		document.getElementById("Date").value = new Date().toISOString().substring(0, 10);
 		document.getElementById("Date").setAttribute("min", today);
+		
+	<!-- 출발역 도착역 바꾸기 -->
+	function swapStations() {
+    	// 출발역과 도착역의 값을 가져옴
+        var startStation = document.getElementById('pInput').value;
+        var endStation = document.getElementById('ppInput').value;
+
+        // 출발역과 도착역의 값을 서로 바꿈
+        document.getElementById('pInput').value = endStation;
+        document.getElementById('ppInput').value = startStation;
+    }
+</script>
+<!--역 조회 -->
+<script type="text/javascript">
+    let openWin1, openWin2;
+
+    function openChild() {
+        window.name = "parentForm";
+        openWin1 = window.open("lookUp.do", "lookUpForm", "width=570, height=350, resizable=no, scrollbars=no");
+    }
+
+    function openChild2() {
+        window.name = "parentForm";
+        openWin2 = window.open("lookUp2.do", "lookUp2Form", "width=570, height=350, resizable=no, scrollbars=no");
+    }
+
+    function setChildText() {
+        if (openWin1 && !openWin1.closed) {
+            openWin1.document.getElementById("cInput").value = document.getElementById("pInput").value;
+        } else {
+            alert("자식 창이 닫혔거나 열리지 않았습니다.");
+        }
+    }
+
+    function setChildText2() {
+        if (openWin2 && !openWin2.closed) {
+            openWin2.document.getElementById("ccInput").value = document.getElementById("ppInput").value;
+        } else {
+            alert("자식 창이 닫혔거나 열리지 않았습니다.");
+        }
+    }
 </script>
 </body>
 

@@ -39,12 +39,13 @@
 	}
 	 ud table, th{
 		background-color: #2e7d32;
-		width: 90px;
-		height: 40px;
+		width: 100px;
+		height: 70px;
 	}
 	 ud table, td{
 		background-color: #a5d6a7;
-		height: 40px;
+		width: 1100px;
+		height: 70px;
 	}
 	
 </style>
@@ -80,11 +81,11 @@
 	<br>
 	<table class="ud">		
 		<th style="text-align: center;">승차 일자</th>
-		<td>#########################################################</td>					
+		<td style="text-align: center;"><input type="date" id="Date" name="lostItemRegDate">~<input type="date" id="Date" name="lostItemRegDate">	</td>					
 	</table>  
 	
 	<!-- 조회하기 버튼 -->
-	<br><br><br>
+	<br>
 	<div style="text-align: center;">
 		<button type="button" class="btn btn-success" >조회하기</button>
 	</div>

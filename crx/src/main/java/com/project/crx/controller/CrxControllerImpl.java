@@ -18,6 +18,16 @@ public class CrxControllerImpl {
         return "groupTicket"; 
     }
     
+    //역 명 조회 작은 팝업
+    @GetMapping("/lookUp.do")
+	public String lookUp() {
+	    return "lookUp"; 
+	}
+	@GetMapping("/lookUp2.do")
+	public String lookUp2() {
+	    return "lookUp2"; 
+	}
+    
     //예약
     @GetMapping("/reservation.do")
     public String reservation() {
@@ -104,5 +114,9 @@ public class CrxControllerImpl {
 	public String test3() {
 	    return "test3"; 
 	}
-
+	@GetMapping("/test4.do")
+	public String test4() {
+	    return "test4"; 
+	}
+	
 }

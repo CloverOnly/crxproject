@@ -7,12 +7,12 @@
 <head>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 <title>단체승차권 예매</title>
 <style>
-	
 	.all{
 		width: 1200px;
-		margin: 0 auto; <!-- 중앙 정렬 -->
+		margin: 0 auto;  <!-- 중앙 정렬 -->
 	}
 	.tiline{
 		display:inline;
@@ -22,8 +22,9 @@
 		color: green;
 		margin: 5px;
 	}
-	.mid{		
-		height: 230px;
+	.mid{
+		
+		height: 300px;
 		background: #f8f8f8;		
 	}
 	.relist{
@@ -33,6 +34,7 @@
 	.rt{
 		margin: 3px;
 	}
+
 	.search{
 		text-align: center;
 	}
@@ -40,9 +42,21 @@
 		color: #000000;
 	}
 	table, th, td {
-		border: 2px solid white;
+	    border: 2px solid white;
 	    border-collapse: collapse;
 	}
+	#Date{
+		width:140px;
+		display:inline;
+	}
+	.checkTrain{
+		border: 2px solid white;
+		border-collapse: collapse;
+	}
+	#swapIcon{
+		font-size: 20px;
+	}
+
 </style>
 </head>
 <body>	 
@@ -78,152 +92,44 @@
 			<div class="relist">
 				
 				<br>
-				<div class= "rt">
-					<label id="start">출발역</label>
-					<input id="start" name="txtGoStart" type="text" class="inp200" value="대전" onchange="hideResult();" title="출발역" autocomplete="off" style="ime-mode:active">
-					<a href="#"><img src="/images/btn_tra_sch.png" alt="조회"></a>
-								
-					&nbsp;&nbsp;&nbsp;
-					<label id="end">도착역</label>
-					<input id="end" name="txtGoStart" type="text" class="inp200" value="서울" onchange="hideResult();" title="출발역" autocomplete="off" style="ime-mode:active">
-					<a href="#"><img src="/images/btn_tra_sch.png" alt="조회"></a>	
-				</div>
-				
-				<br>			
-				<div class= "rt">
-					<label id="listdate">출발일</label>
-					<select style="border: 1px solid #black; padding: 5px; width: 170px; background: #fff;" name="dptDt" id="dptDt" class="ymd checkForm" onchange="changeWeekInfo();" option="{isMust :false, message : '출발일자를 선택하십시오.'}" title="출발일자 선택">
-						<option value="20240717" selected="selected">
-							2024/07/17(수)
-						</option>
-						<option value="20240718">
-							2024/07/18(목)
-						</option>
-						<option value="20240719">
-							2024/07/19(금)
-						</option>
-						<option value="20240720">
-							2024/07/20(토)
-						</option>
-						<option value="20240721">
-							2024/07/21(일)
-						</option>
-						<option value="20240722">
-							2024/07/22(월)
-						</option>										
-						<option value="20240723">
-							2024/07/23(화)
-						</option>
-						<option value="20240724">
-							2024/07/24(수)
-						</option>
-						<option value="20240725">
-							2024/07/25(목)
-						</option>
-						<option value="20240726">
-							2024/07/26(금)
-						</option>
-						<option value="20240727">
-							2024/07/27(토)
-						</option>
-						<option value="20240728">
-							2024/07/28(일)
-						</option>
-						<option value="20240729">
-							2024/07/29(월)
-						</option>
-						<option value="20240730">
-							2024/07/30(화)
-						</option>
-						<option value="20240731">
-							2024/07/31(수)
-						</option>
-						<option value="20240801">
-							2024/08/01(목)
-						</option>
-						<option value="20240802">
-							2024/08/02(금)
-						</option>									
-						<option value="20240803">
-							2024/08/03(토)
-						</option>							
-						<option value="20240804">
-							2024/08/04(일)
-						</option>										
-						<option value="20240805">
-							2024/08/05(월)
-						</option>
-						<option value="20240806">
-							2024/08/06(화)
-						</option>
-						<option value="20240807">
-							2024/08/07(수)
-						</option>
-						<option value="20240808">
-							2024/08/08(목)
-						</option>
-						<option value="20240809">
-							2024/08/09(금)
-						</option>
-						<option value="20240810">
-							2024/08/10(토)
-						</option>
-						<option value="20240811">
-							2024/08/11(일)
-						</option>
-						<option value="20240812">
-							2024/08/12(월)
-						</option>
-						<option value="20240813">
-							2024/08/13(화)
-						</option>										
-						<option value="20240814">
-							2024/08/14(수)
-						</option>					
-						<option value="20240815">
-							2024/08/15(목)
-						</option>
-						<option value="20240816">
-							2024/08/16(금)
-						</option>
-						<option value="20240817">
-							2024/08/17(토)
-						</option>
-					</select>
-					
+				<div class="rt">
+				    <label id="start">출발역</label>
+				    <input id="pInput" name="txtGoStart" type="text" class="inp200" value="대전" title="출발역">
+				    <input type="button" value="조회" onclick="openChild()">
 					&nbsp;&nbsp;
-					<label id="listtime">시간</label>
-					<select style="border: 1px solid #black; padding: 5px; width: 65px; background: #fff;" name="listtime" id="listtime" class="ymd checkForm" onchange="changeWeekInfo();" option="{isMust :false, message : '출발시간을 선택하십시오.'}" title="출발시간 선택">
-						<option value="08" selected="selected">
-							08
-						</option>
-						<option value="10">
-							10
-						</option>
-						<option value="12">
-							12
-						</option>
-						<option value="14">
-							14
-						</option>
-						<option value="16">
-							16
-						</option>
-						<option value="18">
-							18
-						</option>
-						<option value="20">
-							20
-						</option>
-						<option value="22">
-							22
-						</option>
-						<option value="24">
-							24
-						</option>													
-					</select>
-					<label id="listtime">시</label>	
-				</div>			
+					<i id="swapIcon" class="bi bi-arrow-repeat" onclick="swapStations()"></i>
+					&nbsp;&nbsp;
+				    <label id="end">도착역</label>
+				    <input id="ppInput" name="txtGoStart" type="text" class="inp200" value="서울" title="도착역">
+				    <input type="button" value="조회" onclick="openChild2()">
+				</div>
+				<br>			
+				<div class="rt">
+				    <label for="Date">출발일</label>
+				    <input type="date" id="Date" name="lostItemRegDate">        
+				    &nbsp;&nbsp;
+				    <label id="listtime">시간</label>
+				    <select id="listtime">
+				    	<option value="08" selected="selected">08</option>
+					    <option value="09">09</option>		                              
+				        <option value="10">10</option>
+					    <option value="11">11</option>						                              
+				        <option value="12">12</option>
+					    <option value="13">13</option>					                              
+				        <option value="14">14</option>
+					    <option value="15">15</option>					                              
+				        <option value="16">16</option>
+					    <option value="17">17</option>						                              
+				        <option value="18">18</option>
+					    <option value="19">19</option>						                           
+				        <option value="20">20</option>
+					    <option value="21">21</option>						                              
+				        <option value="22">22</option>
+					    <option value="23">23</option> 
+				        <option value="24">24</option>      
+				    </select>
+				    <label id="listtime">시</label>    
+				</div>		
 				
 				<br>
 				<div class= "rt">
@@ -304,43 +210,7 @@
 					</select>
 					<label>명</label>
 					
-					&nbsp;&nbsp;
-					<select style="border: 1px solid #black; padding: 5px; width: 200px; background: #fff;" name="old" id="old" class="ymd checkForm" onchange="changeWeekInfo();" option="{isMust :false, message : '인원을 선택해 주세요.'}" title="인원을 선택해 주세요">
-						<option value="경로(만 65세 이상) 0명" selected="selected">
-							경로(만 65세 이상) 0명
-						</option>
-						<option value="경로(만 65세 이상) 1명">
-							경로(만 65세 이상) 1명
-						</option>
-						<option value="어린이(만 6~12세) 2명">
-							경로(만 65세 이상) 2명
-						</option>
-						<option value="어린이(만 6~12세) 3명">
-							경로(만 65세 이상) 3명
-						</option>
-						<option value="어린이(만 6~12세) 4명">
-							경로(만 65세 이상) 4명
-						</option>
-						<option value="어린이(만 6~12세) 5명">
-							경로(만 65세 이상) 5명
-						</option>
-						<option value="어린이(만 6~12세) 6명">
-							경로(만 65세 이상) 6명
-						</option>
-						<option value="어린이(만 6~12세) 7명">
-							경로(만 65세 이상) 7명
-						</option>
-						<option value="어린이(만 6~12세) 8명">
-							경로(만 65세 이상) 8명
-						</option>
-						<option value="어린이(만 6~12세) 9명">
-							경로(만 65세 이상) 9명
-						</option>
-						<option value="어린이(만 6~12세) 10명">
-							경로(만 65세 이상) 10명
-						</option>													
-					</select>
-					<label>명</label>	
+						
 				</div>
 				
 				<br><br><br>
@@ -350,10 +220,127 @@
 			</div>
 		</div>	
    </div>
-   
-   
 </div>
+       <script>
+           function searchTrains() {
+               const start = document.getElementById('start').value;
+               const end = document.getElementById('end').value;
+               const date = document.getElementById('Date').value;
+               const time = document.getElementById('listtime').value;
+               const personnel = document.getElementById('personnel').value;
+               const child = document.getElementById('child').value;
+               const old = document.getElementById('old').value;
+               const seattype = document.getElementById('seattype').value;
+               const trainType = document.querySelector('input[name="flexRadioDefault"]:checked').nextElementSibling.textContent;
 
+               const resultText = `
+			   		<style>
+			              .checkTrain {
+			                  width: 100%;
+			                  border-collapse: collapse;
+			              }
+			              .checkTrain th, .checkTrain td {
+			                  border: 1px solid #ddd;
+			                  padding: 8px;
+			                  text-align: center;
+			              }
+			              .checkTrain th {
+			                  background-color: #f2f2f2;
+			                  color: black;
+			              }
+			              .checkTrain tr:nth-child(even) {
+			                  background-color: #f9f9f9;
+			              }
+			              .checkTrain tr:hover {
+			                  background-color: #ddd;
+			              }
+			        </style>
+					<br>
+			   		<table class="checkTrain">
+						<thead>
+						<tr>
+							<th>열차종류</th>
+							<th>열차번호</th>
+							<th>출발역</th>
+							<th>도착역</th>
+							<th>좌석종류</th>
+							<th>출발시간</th>
+							<th>도착시간</th>
+							<th>소요시간</th>								
+						</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>${trainType}</td>
+								<td>${trainNo}</td>
+								<td>${start}</td>
+								<td>${end}</td>
+								<td>${seatType}</td>
+								<td>${startTime}</td>
+								<td>${endTime}</td>
+								<td>${timeTaken}</td>
+							</tr>
+						</tbody>
+					</table>
+               `;
+
+               document.getElementById('resultText').innerHTML = resultText;
+               document.getElementById('result').style.display = 'block';
+           }
+
+           function hideResult() {
+               document.getElementById('result').style.display = 'none';
+           }
+       
+		<!-- 오늘 이전으로 선택되지 않도록 설정 -->
+		var now_utc = Date.now()
+		var timeOff = new Date().getTimezoneOffset()*60000;
+		var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+		document.getElementById("Date").value = new Date().toISOString().substring(0, 10);
+		document.getElementById("Date").setAttribute("min", today);
+		
+		<!-- 출발역 도착역 바꾸기 -->
+		function swapStations() {
+			// 출발역과 도착역의 값을 가져옴
+		    var startStation = document.getElementById('pInput').value;
+		    var endStation = document.getElementById('ppInput').value;
+
+		    // 출발역과 도착역의 값을 서로 바꿈
+		    document.getElementById('pInput').value = endStation;
+		    document.getElementById('ppInput').value = startStation;
+		}		
+</script>
+
+<!--역 조회 -->
+<script type="text/javascript">
+    let openWin1, openWin2;
+
+    function openChild() {
+        window.name = "parentForm";
+        openWin1 = window.open("lookUp.do", "lookUpForm", "width=570, height=350, resizable=no, scrollbars=no");
+    }
+
+    function openChild2() {
+        window.name = "parentForm";
+        openWin2 = window.open("lookUp2.do", "lookUp2Form", "width=570, height=350, resizable=no, scrollbars=no");
+    }
+
+    function setChildText() {
+        if (openWin1 && !openWin1.closed) {
+            openWin1.document.getElementById("cInput").value = document.getElementById("pInput").value;
+        } else {
+            alert("자식 창이 닫혔거나 열리지 않았습니다.");
+        }
+    }
+
+    function setChildText2() {
+        if (openWin2 && !openWin2.closed) {
+            openWin2.document.getElementById("ccInput").value = document.getElementById("ppInput").value;
+        } else {
+            alert("자식 창이 닫혔거나 열리지 않았습니다.");
+        }
+    }
+</script>
 </body>
 
 

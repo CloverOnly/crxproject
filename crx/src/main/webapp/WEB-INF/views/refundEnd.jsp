@@ -59,7 +59,7 @@
 	<!-- 조회하기 버튼 -->
 	<br>
 	<div style="text-align: right;">
-		<button type="button" class="btn btn-success" >목록</button>
+		<button type="button" class="btn btn-success" onclick="location.href='main.jsp'">목록</button>
 	</div>
 </div>
 </body>
