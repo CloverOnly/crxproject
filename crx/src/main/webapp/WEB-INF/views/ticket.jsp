@@ -90,17 +90,17 @@
            <div>
                <div class="relist">
                    <br>
-                   <div class="rt">
-					    <label id="start">출발역</label>
-					    <input id="pInput" name="txtGoStart" type="text" class="inp200" value="대전" title="출발역">
-					    <input type="button" value="조회" onclick="openChild()">
-					    &nbsp;&nbsp;
-						<i id="swapIcon" class="bi bi-arrow-repeat" onclick="swapStations()"></i>
-						&nbsp;&nbsp;
-					    <label id="end">도착역</label>
-					    <input id="ppInput" name="txtGoStart" type="text" class="inp200" value="서울" title="도착역">
-					    <input type="button" value="조회" onclick="openChild2()">
-					</div>
+				   <div class="rt">
+				       <label for="arrplacename">출발역</label>
+				       <input id="arrplacename" name="arrplacename" type="text" class="inp200" value="대전" title="출발역">
+				       <input type="button" value="조회" onclick="openChild()">
+				       &nbsp;&nbsp;
+				       <i id="swapIcon" class="bi bi-arrow-repeat" onclick="swapStations()"></i>
+				       &nbsp;&nbsp;
+				       <label for="depplacename">도착역</label>
+				       <input id="depplacename" name="depplacename" type="text" class="inp200" value="서울" title="도착역">
+				       <input type="button" value="조회" onclick="openChild2()">
+				   </div>
                    <br>
                    <div class="rt">
                        <label for="Date">출발일</label>
@@ -274,32 +274,30 @@
 		
 	<!-- 출발역 도착역 바꾸기 -->
 	function swapStations() {
-    	// 출발역과 도착역의 값을 가져옴
-        var startStation = document.getElementById('pInput').value;
-        var endStation = document.getElementById('ppInput').value;
+	    var arrplacename = document.getElementById('arrplacename').value;
+	    var depplacename = document.getElementById('depplacename').value;
 
-        // 출발역과 도착역의 값을 서로 바꿈
-        document.getElementById('pInput').value = endStation;
-        document.getElementById('ppInput').value = startStation;
-    }
+	    document.getElementById('arrplacename').value = depplacename;
+	    document.getElementById('depplacename').value = arrplacename;
+	}
 </script>
 <!--역 조회 -->
 <script type="text/javascript">
     let openWin1, openWin2;
 
-    function openChild() {
-        window.name = "parentForm";
-        openWin1 = window.open("lookUp.do", "lookUpForm", "width=570, height=350, resizable=no, scrollbars=no");
-    }
+	function openChild() {
+	    window.name = "parentForm";
+	    openWin1 = window.open("lookUp.do", "lookUpForm", "width=570, height=350, resizable=no, scrollbars=no");
+	}
 
-    function openChild2() {
-        window.name = "parentForm";
-        openWin2 = window.open("lookUp2.do", "lookUp2Form", "width=570, height=350, resizable=no, scrollbars=no");
-    }
+	function openChild2() {
+	    window.name = "parentForm";
+	    openWin2 = window.open("lookUp2.do", "lookUp2Form", "width=570, height=350, resizable=no, scrollbars=no");
+	}
 
     function setChildText() {
         if (openWin1 && !openWin1.closed) {
-            openWin1.document.getElementById("cInput").value = document.getElementById("pInput").value;
+            openWin1.document.getElementById("cInput").value = document.getElementById("arrplacename").value;
         } else {
             alert("자식 창이 닫혔거나 열리지 않았습니다.");
         }
@@ -307,7 +305,7 @@
 
     function setChildText2() {
         if (openWin2 && !openWin2.closed) {
-            openWin2.document.getElementById("ccInput").value = document.getElementById("ppInput").value;
+            openWin2.document.getElementById("ccInput").value = document.getElementById("depplacename").value;
         } else {
             alert("자식 창이 닫혔거나 열리지 않았습니다.");
         }

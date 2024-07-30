@@ -1,7 +1,15 @@
 package com.project.crx.controller;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
+
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CrxControllerImpl {
@@ -100,6 +108,58 @@ public class CrxControllerImpl {
     public String yangyang() {
         return "yangyang"; 
     }
+    
+    //api
+    @GetMapping("/trainInfo.do")
+    public String getTrainInfo(
+            @RequestParam(value = "depPlaceId", defaultValue = "NAT010000") String depPlaceId,
+            @RequestParam(value = "arrPlaceId", defaultValue = "NAT011668") String arrPlaceId,
+            @RequestParam(value = "depPlandTime", defaultValue = "20240730") String depPlandTime,
+            @RequestParam(value = "trainGradeCode", defaultValue = "00") String trainGradeCode,
+            Model model) {
+
+        try {
+            StringBuilder urlBuilder = new StringBuilder("http://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo");
+            urlBuilder.append("?" + URLEncoder.encode("serviceKey", "UTF-8") + "=KOyx%2F5iXteTdFA1wcSF1KvBTsEQcHMa8cFsrBwLTM6EGpTydPaVEtn4IjjQrwiIxqBvpc%2Bqi4NM9izQQfHzT3w%3D%3D");
+            urlBuilder.append("&" + URLEncoder.encode("pageNo", "UTF-8") + "=" + URLEncoder.encode("1", "UTF-8"));
+            urlBuilder.append("&" + URLEncoder.encode("numOfRows", "UTF-8") + "=" + URLEncoder.encode("10", "UTF-8"));
+            urlBuilder.append("&" + URLEncoder.encode("_type", "UTF-8") + "=" + URLEncoder.encode("json", "UTF-8"));
+            urlBuilder.append("&" + URLEncoder.encode("depPlaceId", "UTF-8") + "=" + URLEncoder.encode(depPlaceId, "UTF-8"));
+            urlBuilder.append("&" + URLEncoder.encode("arrPlaceId", "UTF-8") + "=" + URLEncoder.encode(arrPlaceId, "UTF-8"));
+            urlBuilder.append("&" + URLEncoder.encode("depPlandTime", "UTF-8") + "=" + URLEncoder.encode(depPlandTime, "UTF-8"));
+            urlBuilder.append("&" + URLEncoder.encode("trainGradeCode", "UTF-8") + "=" + URLEncoder.encode(trainGradeCode, "UTF-8"));
+
+            URL url = new URL(urlBuilder.toString());
+            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+            conn.setRequestMethod("GET");
+            conn.setRequestProperty("Content-type", "application/json");
+
+            BufferedReader rd;
+            if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+                rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+            } else {
+                rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+            }
+
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while ((line = rd.readLine()) != null) {
+                sb.append(line);
+            }
+            rd.close();
+            conn.disconnect();
+
+            model.addAttribute("apiResponse", sb.toString());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            model.addAttribute("apiResponse", "Error occurred while fetching train info.");
+        }
+
+        return "trainInfo"; // JSP 페이지의 이름
+    }
+
+    
     
     //테스트
     @GetMapping("/test.do")

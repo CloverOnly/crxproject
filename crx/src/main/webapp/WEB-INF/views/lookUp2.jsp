@@ -21,7 +21,7 @@
     <br><br>
     <script>
         function setParentText(button) {
-            var parentInput = opener.document.getElementById("ppInput");
+            var parentInput = opener.document.getElementById("depplacename");
             parentInput.value = button.textContent;
             window.close(); // 클릭 후 자식 창 닫기
         }

@@ -19,8 +19,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.3'
     implementation 'jakarta.servlet.jsp.jstl:jakarta.servlet.jsp.jstl-api:2.0.0'
     implementation 'org.glassfish.web:jakarta.servlet.jsp.jstl:2.0.0'
@@ -35,4 +35,14 @@ dependencies {
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+// Ensure that the WAR plugin creates a WAR file
+tasks.named('war') {
+    enabled = true
+}
+
+war {
+    archiveFileName.set("app.war")
+    webAppDirName = 'src/main/webapp'
 }
