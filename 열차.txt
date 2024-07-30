@@ -1,0 +1,7 @@
+adultcharge : 가격
+arrplacename : 출발역
+arrplandtime : 출발 시간
+depplacename: 도착역
+depplandtime: 도착 시간
+traingradename: 열차 종류
+trainno: 열차 번호
