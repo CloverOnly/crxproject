@@ -244,13 +244,13 @@
 						</thead>
 						<tbody>
 							<tr>
-								<td>${trainType}</td>
-								<td>${trainNo}</td>
-								<td>${start}</td>
-								<td>${end}</td>
+								<td>${traingradename}</td>
+								<td>${trainno}</td>
+								<td>${arrplacename}</td>
+								<td>${depplandtime}</td>
 								<td>${seatType}</td>
-								<td>${startTime}</td>
-								<td>${endTime}</td>
+								<td>${arrplandtime}</td>
+								<td>${depplandtime}</td>
 								<td>${timeTaken}</td>
 							</tr>
 						</tbody>

@@ -1,348 +1,595 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>    
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false" %>
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <c:set var="contextPath" value="${pageContext.request.contextPath}"/>
 
+
+
 <!DOCTYPE html>
+
 <html>
+
 <head>
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
-<title>일반승차권 예매</title>
-<style>
-	.all{
-		width: 1200px;
-		margin: 0 auto;  <!-- 중앙 정렬 -->
-	}
-	.tiline{
-		display:inline;
-		border:solid 1px green;
-		border-radius: 8px;
-		padding: 5px;
-		color: green;
-		margin: 5px;
-	}
-	.mid{
-		
-		height: 300px;
-		background: #f8f8f8;		
-	}
-	.relist{
-		margin: 0 5 5 5px;
-		padding: 5px;
-	}
-	.rt{
-		margin: 3px;
-	}
-	
-	.search{
-		text-align: center;
-	}
-	.minititle a{
-		color: #000000;
-	}
-	table, th, td {
-	    border: 2px solid white;
-	    border-collapse: collapse;
-	}
-	#Date{
-		width:140px;
-		display:inline;
-	}
-	#listDate{
-		
-	}
-	.checkTrain{
-		border: 2px solid white;
-		border-collapse: collapse;
-	}
 
-</style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <title>일반승차권 예매</title>
+
+    <style>
+
+        .all {
+
+            width: 1200px;
+
+            margin: 0 auto; /* 중앙 정렬 */
+
+        }
+
+        .tiline {
+
+            display: inline;
+
+            border: solid 1px green;
+
+            border-radius: 8px;
+
+            padding: 5px;
+
+            color: green;
+
+            margin: 5px;
+
+        }
+
+        .mid {
+
+            height: 300px;
+
+            background: #f8f8f8;
+
+        }
+
+        .relist {
+
+            margin: 0 5px;
+
+            padding: 5px;
+
+        }
+
+        .rt {
+
+            margin: 3px;
+
+        }
+
+        .search {
+
+            text-align: center;
+
+        }
+
+        .minititle a {
+
+            color: #000000;
+
+        }
+
+        table, th, td {
+
+            border: 2px solid white;
+
+            border-collapse: collapse;
+
+        }
+
+        #Date {
+
+            width: 140px;
+
+            display: inline;
+
+        }
+
+        .checkTrain {
+
+            border: 2px solid white;
+
+            border-collapse: collapse;
+
+            width: 100%;
+
+        }
+
+        #swapIcon {
+
+            font-size: 20px;
+
+            cursor: pointer; /* 클릭 가능성 추가 */
+
+        }
+
+    </style>
+
 </head>
-<body>	 
-<jsp:include page="header.jsp" />
-<div class="all">
-	
-	 <div class="maintitle">
-	 	 <h1>일반승차권</h1>
-	 	 <hr>
-	 </div>
-	
-	 <br>
-	 <div style="text-align:center;">
-		 <img src= "../img/mark1.gif" style="width:500px">
-	 </div>
-	
-	<br>
-   
-    <div>
-	<br>
-				<ul class="nav nav-tabs">
-					<li class="minititle nav-item">
-						<a class="nav-link active bg-light" aria-current="page" href="ticket.do">일반승차권 조회</a>
-					</li>
-					<li class="minititle nav-item">
-						<a class="nav-link" href="groupTicket.do">단체승차권 조회</a>
-					</li>
-				</ul>
-   </div>
-   <div class="mid">
-           <div>
-               <div class="relist">
-                   <br>
-                   <div class="rt">
-					    <label id="start">출발역</label>
-					    <input id="pInput" name="txtGoStart" type="text" class="inp200" value="대전" title="출발역">
-					    <input type="button" value="조회" onclick="openChild()">
-					    &nbsp;&nbsp;
-						<i id="swapIcon" class="bi bi-arrow-repeat" onclick="swapStations()"></i>
-						&nbsp;&nbsp;
-					    <label id="end">도착역</label>
-					    <input id="ppInput" name="txtGoStart" type="text" class="inp200" value="서울" title="도착역">
-					    <input type="button" value="조회" onclick="openChild2()">
-					</div>
-                   <br>
-                   <div class="rt">
-                       <label for="Date">출발일</label>
-                       <input type="date" id="Date" name="lostItemRegDate">        
-                       &nbsp;&nbsp;
-                       <label id="listtime">시간</label>
-                       <select id="listtime">
-                           <option value="08" selected="selected">08</option>
-						   <option value="09">09</option>		                              
-                           <option value="10">10</option>
-						   <option value="11">11</option>						                              
-                           <option value="12">12</option>
-						   <option value="13">13</option>					                              
-                           <option value="14">14</option>
-						   <option value="15">15</option>					                              
-                           <option value="16">16</option>
-						   <option value="17">17</option>						                              
-                           <option value="18">18</option>
-						   <option value="19">19</option>						                           
-                           <option value="20">20</option>
-						   <option value="21">21</option>						                              
-                           <option value="22">22</option>
-						   <option value="23">23</option> 
-                           <option value="24">24</option>      
-                       </select>
-                       <label id="listtime">시</label>    
-                   </div>
-                   <br>
-                   <div class="rt">
-                       <div>
-                           <label class="listar" id="personnel">인원정보</label>
-                           <select id="personnel">
-                               <option value="어른 0명">어른(만13세 이상) 0명</option>
-                               <option value="어른 1명" selected="selected">어른(만13세 이상) 1명</option>
-                               <option value="어른 2명">어른(만13세 이상) 2명</option>
-                               <option value="어른 3명">어른(만13세 이상) 3명</option>
-                               <option value="어른 4명">어른(만13세 이상) 4명</option>
-                               <option value="어른 5명">어른(만13세 이상) 5명</option>
-                               <option value="어른 6명">어른(만13세 이상) 6명</option>
-                               <option value="어른 7명">어른(만13세 이상) 7명</option>
-                               <option value="어른 8명">어른(만13세 이상) 8명</option>
-                               <option value="어른 9명">어른(만13세 이상) 9명</option>
-                               <option value="어른 10명">어른(만13세 이상) 10명</option>
-                           </select>
-                           <label>명</label>
-                           &nbsp;&nbsp;
-                           <select id="child">
-                               <option value="어린이 0명" selected="selected">어린이(만6~12세) 0명</option>
-                               <option value="어린이 1명">어린이(만6~12세) 1명</option>
-                               <option value="어린이 2명">어린이(만6~12세) 2명</option>
-                               <option value="어린이 3명">어린이(만6~12세) 3명</option>
-                               <option value="어린이 4명">어린이(만6~12세) 4명</option>
-                               <option value="어린이 5명">어린이(만6~12세) 5명</option>
-                               <option value="어린이 6명">어린이(만6~12세) 6명</option>
-                               <option value="어린이 7명">어린이(만6~12세) 7명</option>
-                               <option value="어린이 8명">어린이(만6~12세) 8명</option>
-                               <option value="어린이 9명">어린이(만6~12세) 9명</option>
-                               <option value="어린이 10명">어린이(만6~12세) 10명</option>
-                           </select>
-                           <label>명</label>
-                             
-                       </div>
-                   </div>
-                   <br>
-                   <div class="rt">
-                       <label id="seattype">좌석종류</label>
-                       <select id="seattype">
-                           <option value="좌석 종류" selected="selected">좌석 종류</option>
-                           <option value="일반">일반</option>
-                           <option value="특실">특실</option>
-                       </select>                    
-                   </div>
-                   <br>
-                   <div class="rt">
-                       <label id="seattype">차종구분</label>
-                       &nbsp;
-                       <input class="form-check-input" type="radio" name="flexRadioDefault" id="CRX">
-                       <label class="form-check-label" for="CRX">CRX</label>
-                       &nbsp;
-                       <input class="form-check-input" type="radio" name="flexRadioDefault" id="KTX" checked>
-                       <label class="form-check-label" for="KTX">KTX</label>
-                   </div>
-                   <br><br>
-                   <div class="search">
-                       <button type="button" class="btn btn-success" onclick="searchTrains()">조회하기</button>
-                   </div>
-                   <div class="result" id="result">
-                       <p id="resultText"></p>
-                   </div>
-               </div>
-           </div>
-       </div>
-       <script>
-		function searchTrains() {
-		    const start = document.getElementById('pInput').value;
-		    const end = document.getElementById('ppInput').value;
-		    const date = document.getElementById('Date').value;
-		    const time = document.getElementById('listtime').value;
-		    const personnel = document.getElementById('personnel').value;
-		    const child = document.getElementById('child').value;
-		    const seattype = document.getElementById('seattype').value;
-		    const trainType = document.querySelector('input[name="flexRadioDefault"]:checked')?.nextElementSibling.textContent || '';
 
-		    // 모의 데이터 (실제 API 호출로 대체)
-		    const data = {
-		        "response": {
-		            "header": {
-		                "resultCode": "00",
-		                "resultMsg": "NORMAL SERVICE."
-		            },
-		            "body": {
-		                "items": {
-		                    "item": [
-		                        { "adultcharge": 23700, "arrplacename": "서울", "arrplandtime": 20240723104800, "depplacename": "대전", "depplandtime": 20240723094600, "traingradename": "KTX", "trainno": 14 },
-		                        // 더 많은 데이터
-		                    ]
-		                },
-		                "numOfRows": 10,
-		                "pageNo": 2,
-		                "totalCount": 57
-		            }
-		        }
-		    };
+<body>
 
-		    const items = data.response.body.items.item || [];
-		    let resultText = `
-		        <style>
-		            .checkTrain {
-		                width: 100%;
-		                border-collapse: collapse;
-		            }
-		            .checkTrain th, .checkTrain td {
-		                border: 1px solid #ddd;
-		                padding: 8px;
-		                text-align: center;
-		            }
-		            .checkTrain th {
-		                background-color: #f2f2f2;
-		                color: black;
-		            }
-		            .checkTrain tr:nth-child(even) {
-		                background-color: #f9f9f9;
-		            }
-		            .checkTrain tr:hover {
-		                background-color: #ddd;
-		            }
-		        </style>
-		        <br>
-		        <table class="checkTrain">
-		            <thead>
-		                <tr>
-		                    <th>열차종류</th>
-		                    <th>열차번호</th>
-		                    <th>출발역</th>
-		                    <th>도착역</th>
-		                    <th>좌석종류</th>
-		                    <th>출발시간</th>
-		                    <th>도착시간</th>
-		                    <th>소요시간</th>
-		                    <th>요금</th>
-		                </tr>
-		            </thead>
-		            <tbody>
-		    `;
+    <div class="all">
 
-		    items.forEach(item => {
-		        const depDateTime = `${item.depplandtime.toString().slice(0, 4)}-${item.depplandtime.toString().slice(4, 6)}-${item.depplandtime.toString().slice(6, 8)} ${item.depplandtime.toString().slice(8, 10)}:${item.depplandtime.toString().slice(10, 12)}`;
-		        const arrDateTime = `${item.arrplandtime.toString().slice(0, 4)}-${item.arrplandtime.toString().slice(4, 6)}-${item.arrplandtime.toString().slice(6, 8)} ${item.arrplandtime.toString().slice(8, 10)}:${item.arrplandtime.toString().slice(10, 12)}`;
-		        const duration = (item.arrplandtime - item.depplandtime) / 100; // 시간 차를 분 단위로 계산
-		        resultText += `
-		            <tr>
-		                <td>${item.traingradename}</td>
-		                <td>${item.trainno}</td>
-		                <td>${item.depplacename}</td>
-		                <td>${item.arrplacename}</td>
-		                <td>${seattype}</td>
-		                <td>${depDateTime}</td>
-		                <td>${arrDateTime}</td>
-		                <td>${Math.floor(duration / 60)}시간 ${duration % 60}분</td>
-		                <td>${item.adultcharge.toLocaleString()}원</td>
-		            </tr>
-		        `;
-		    });
+        <div class="maintitle">
 
-		    resultText += `
-		        </tbody>
-		    </table>
-		    `;
+            <h1>일반승차권</h1>
 
-		    document.getElementById('resultText').innerHTML = resultText;
-		    document.getElementById('result').style.display = 'block';
-		}
+            <hr>
 
-       
-			<!-- 오늘 이전으로 선택되지 않도록 설정 -->
-			var now_utc = Date.now()
-				var timeOff = new Date().getTimezoneOffset()*60000;
-				var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
-				document.getElementById("Date").value = new Date().toISOString().substring(0, 10);
-				document.getElementById("Date").setAttribute("min", today);
-				
-			<!-- 출발역 도착역 바꾸기 -->
+        </div>
+
+        <br>
+
+        <div style="text-align:center;">
+
+            <img src="../img/mark1.gif" style="width:500px">
+
+        </div>
+
+        <br>
+
+        <div>
+
+            <br>
+
+            <ul class="nav nav-tabs">
+
+                <li class="minititle nav-item">
+
+                    <a class="nav-link active bg-light" aria-current="page" href="ticket.do">일반승차권 조회</a>
+
+                </li>
+
+                <li class="minititle nav-item">
+
+                    <a class="nav-link" href="groupTicket.do">단체승차권 조회</a>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+        <div class="mid">
+
+            <div>
+
+                <div class="relist">
+
+                    <br>
+
+                    <div class="rt">
+
+                        <label for="arrplacename">출발역</label>
+
+                        <input id="arrplacename" name="arrplacename" type="text" class="inp200" value="대전" title="출발역">
+
+                        <i id="swapIcon" class="bi bi-arrow-repeat" onclick="swapStations()"></i>
+
+                        <label for="depplacename">도착역</label>
+
+                        <input id="depplacename" name="depplacename" type="text" class="inp200" value="서울" title="도착역">
+
+                    </div>
+
+                    <br>
+
+                    <div class="rt" id="arrplandtime">
+
+                        <label for="Date">출발일</label>
+
+                        <input type="date" id="Date" name="lostItemRegDate">
+
+                        &nbsp;&nbsp;
+
+                        <label for="timeSelect">시간</label>
+
+                        <select id="timeSelect">
+
+                            <option value="08" selected="selected">08</option>
+
+                            <option value="09">09</option>
+
+                            <option value="10">10</option>
+
+                            <option value="11">11</option>
+
+                            <option value="12">12</option>
+
+                            <option value="13">13</option>
+
+                            <option value="14">14</option>
+
+                            <option value="15">15</option>
+
+                            <option value="16">16</option>
+
+                            <option value="17">17</option>
+
+                            <option value="18">18</option>
+
+                            <option value="19">19</option>
+
+                            <option value="20">20</option>
+
+                            <option value="21">21</option>
+
+                            <option value="22">22</option>
+
+                            <option value="23">23</option>
+
+                            <option value="24">24</option>
+
+                        </select>
+
+                        <label id="listtime">시</label>
+
+                    </div>
+
+                    <br>
+
+                    <div class="rt">
+
+                        <div>
+
+                            <label for="personnel">인원정보</label>
+
+                            <select id="personnel">
+
+                                <option value="0">어른(만13세 이상) 0명</option>
+
+                                <option value="1" selected="selected">어른(만13세 이상) 1명</option>
+
+                                <option value="2">어른(만13세 이상) 2명</option>
+
+                                <option value="3">어른(만13세 이상) 3명</option>
+
+                                <option value="4">어른(만13세 이상) 4명</option>
+
+                                <option value="5">어른(만13세 이상) 5명</option>
+
+                                <option value="6">어른(만13세 이상) 6명</option>
+
+                                <option value="7">어른(만13세 이상) 7명</option>
+
+                                <option value="8">어른(만13세 이상) 8명</option>
+
+                                <option value="9">어른(만13세 이상) 9명</option>
+
+                                <option value="10">어른(만13세 이상) 10명</option>
+
+                            </select>
+
+                            <label for="child">명</label>
+
+                            &nbsp;&nbsp;
+
+                            <select id="child">
+
+                                <option value="0" selected="selected">어린이(만6~12세) 0명</option>
+
+                                <option value="1">어린이(만6~12세) 1명</option>
+
+                                <option value="2">어린이(만6~12세) 2명</option>
+
+                                <option value="3">어린이(만6~12세) 3명</option>
+
+                                <option value="4">어린이(만6~12세) 4명</option>
+
+                                <option value="5">어린이(만6~12세) 5명</option>
+
+                                <option value="6">어린이(만6~12세) 6명</option>
+
+                                <option value="7">어린이(만6~12세) 7명</option>
+
+                                <option value="8">어린이(만6~12세) 8명</option>
+
+                                <option value="9">어린이(만6~12세) 9명</option>
+
+                                <option value="10">어린이(만6~12세) 10명</option>
+
+                            </select>
+
+                            <label for="child">명</label>
+
+                        </div>
+
+                    </div>
+
+                    <br>
+
+                    <div class="rt">
+
+                        <label id="seattype">좌석종류</label>
+
+                        <select>
+
+                            <option value="일반" selected="selected">일반</option>
+
+                            <option value="특실">특실</option>
+
+                        </select>
+
+                    </div>
+
+                    <br>
+
+                    <div class="rt">
+
+                        <label id="trainType">차종구분</label>
+
+                        &nbsp;
+
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="KTX" value="KTX">
+
+                        <label class="form-check-label" for="KTX">KTX</label>
+
+                        &nbsp;&nbsp;
+
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="SRT" value="SRT">
+
+                        <label class="form-check-label" for="SRT">SRT</label>
+
+                    </div>
+
+                    <br>
+
+                    <div class="search">
+
+                        <button class="btn btn-primary" onclick="fetchTicketInfo()">조회</button>
+
+                    </div>
+
+                    <br>
+
+                    <div id="results"></div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <script>
+
+			function formatDateToYYYYMMDDHH(dateStr, timeStr) {
+
+			    var dateParts = dateStr.split('-');
+
+			    var year = dateParts[0];
+
+			    var month = dateParts[1];
+
+			    var day = dateParts[2];
+
+			    var hour = timeStr.padStart(2, '0');
+
+			    return `${year}${month}${day}${hour}`;
+
+			}
+
+
+
+			function fetchTicketInfo() {
+
+			    var depPlaceId = document.getElementById('arrplacename').value;
+
+			    var arrPlaceId = document.getElementById('depplacename').value;
+
+			    var depDate = document.getElementById('Date').value;
+
+			    var depTime = document.getElementById('timeSelect').value;
+
+			    var formattedDepPlandTime = formatDateToYYYYMMDDHH(depDate, depTime);
+
+
+
+			    var seatType = document.querySelector('select').value;  // 좌석종류 선택
+
+			    var trainType = document.querySelector('input[name="flexRadioDefault"]:checked').value;
+
+
+
+			    var xhr = new XMLHttpRequest();
+
+			    var serviceKey = 'KOyx%2F5iXteTdFA1wcSF1KvBTsEQcHMa8cFsrBwLTM6EGpTydPaVEtn4IjjQrwiIxqBvpc%2Bqi4NM9izQQfHzT3w%3D%3D'; // 서비스 키
+
+			    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + encodeURIComponent(serviceKey) +
+
+			        '&' + encodeURIComponent('depPlaceId') + '=' + encodeURIComponent(depPlaceId) +
+
+			        '&' + encodeURIComponent('arrPlaceId') + '=' + encodeURIComponent(arrPlaceId) +
+
+			        '&' + encodeURIComponent('depPlandTime') + '=' + encodeURIComponent(formattedDepPlandTime) +
+
+			        '&' + encodeURIComponent('trainGradeCode') + '=' + encodeURIComponent(seatType) +
+
+			        '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10') +
+
+			        '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1') +
+
+			        '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json'); // JSON 응답 요청
+
+
+
+				xhr.open('GET', 'https://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey=KOyx%2F5iXteTdFA1wcSF1KvBTsEQcHMa8cFsrBwLTM6EGpTydPaVEtn4IjjQrwiIxqBvpc%2Bqi4NM9izQQfHzT3w%3D%3D&pageNo=1&numOfRows=10&_type=json&depPlaceId=NAT010000&arrPlaceId=NAT011668&depPlandTime=20240731&trainGradeCode=00');
+
+			    xhr.onreadystatechange = function () {
+
+			        if (this.readyState == 4) {
+
+			            if (this.status == 200) {
+
+			                try {
+
+			                    var response = JSON.parse(this.responseText);
+
+			                    var items = response.response.body.items.item || [];
+
+			                    if (items.length > 0) {
+
+			                        var table = '<table class="checkTrain">' +
+
+			                            '<thead>' +
+
+			                            '<tr>' +
+
+			                            '<th>열차종류</th>' +
+
+			                            '<th>열차번호</th>' +
+
+			                            '<th>출발역</th>' +
+
+			                            '<th>도착역</th>' +
+
+			                            '<th>좌석종류</th>' +
+
+			                            '<th>출발시간</th>' +
+
+			                            '<th>도착시간</th>' +
+
+			                            '<th>소요시간</th>' +
+
+			                            '</tr>' +
+
+			                            '</thead>' +
+
+			                            '<tbody>';
+
+
+
+			                        items.forEach(function(item) {
+
+			                            var depTime = item.depplandtime;
+
+			                            var arrTime = item.arrplandtime;
+
+			                            var duration = ((arrTime - depTime) / 100) + '분'; // 소요 시간 계산 (임시)
+
+
+
+			                            table += '<tr>' +
+
+			                                '<td>' + (item.traingradename || 'N/A') + '</td>' +
+
+			                                '<td>' + (item.trainno || 'N/A') + '</td>' +
+
+			                                '<td>' + (item.depplacename || 'N/A') + '</td>' +
+
+			                                '<td>' + (item.arrplacename || 'N/A') + '</td>' +
+
+			                                '<td>' + seatType + '</td>' +
+
+			                                '<td>' + formatTime(item.depplandtime) + '</td>' +
+
+			                                '<td>' + formatTime(item.arrplandtime) + '</td>' +
+
+			                                '<td>' + duration + '</td>' +
+
+			                                '</tr>';
+
+			                        });
+
+
+
+			                        table += '</tbody></table>';
+
+			                        document.getElementById('results').innerHTML = table;
+
+			                    } else {
+
+			                        document.getElementById('results').innerText = '검색된 결과가 없습니다.';
+
+			                    }
+
+			                } catch (e) {
+
+			                    console.error('JSON 파싱 오류:', e);
+
+			                    document.getElementById('results').innerText = '서버 응답을 처리하는 동안 오류가 발생했습니다.';
+
+			                }
+
+			            } else {
+
+			                console.error('API 요청 실패:', this.status, this.statusText);
+
+			                document.getElementById('results').innerText = '서버 응답 오류: ' + this.statusText;
+
+			            }
+
+			        }
+
+			    };
+
+
+
+			    xhr.onerror = function () {
+
+			        console.error('네트워크 오류 발생:', this.statusText);
+
+			        document.getElementById('results').innerText = '네트워크 오류가 발생했습니다.';
+
+			    };
+
+
+
+			    xhr.send();
+
+			}
+
+
+
+			function formatTime(timestamp) {
+
+			    var timeStr = timestamp.toString();
+
+			    var year = timeStr.substring(0, 4);
+
+			    var month = timeStr.substring(4, 6);
+
+			    var day = timeStr.substring(6, 8);
+
+			    var hour = timeStr.substring(8, 10);
+
+			    var minute = timeStr.substring(10, 12);
+
+			    return `${year}-${month}-${day} ${hour}:${minute}`;
+
+			}
+
+
+
 			function swapStations() {
-		    	// 출발역과 도착역의 값을 가져옴
-		        var startStation = document.getElementById('pInput').value;
-		        var endStation = document.getElementById('ppInput').value;
 
-		        // 출발역과 도착역의 값을 서로 바꿈
-		        document.getElementById('pInput').value = endStation;
-		        document.getElementById('ppInput').value = startStation;
-		    }
-		</script>
-<!--역 조회 -->
-<script type="text/javascript">
-    let openWin1, openWin2;
+			    var arrPlace = document.getElementById('arrplacename').value;
 
-    function openChild() {
-        window.name = "parentForm";
-        openWin1 = window.open("lookUp.do", "lookUpForm", "width=570, height=350, resizable=no, scrollbars=no");
-    }
+			    var depPlace = document.getElementById('depplacename').value;
 
-    function openChild2() {
-        window.name = "parentForm";
-        openWin2 = window.open("lookUp2.do", "lookUp2Form", "width=570, height=350, resizable=no, scrollbars=no");
-    }
+			    document.getElementById('arrplacename').value = depPlace;
 
-    function setChildText() {
-        if (openWin1 && !openWin1.closed) {
-            openWin1.document.getElementById("cInput").value = document.getElementById("pInput").value;
-        } else {
-            alert("자식 창이 닫혔거나 열리지 않았습니다.");
-        }
-    }
+			    document.getElementById('depplacename').value = arrPlace;
 
-    function setChildText2() {
-        if (openWin2 && !openWin2.closed) {
-            openWin2.document.getElementById("ccInput").value = document.getElementById("ppInput").value;
-        } else {
-            alert("자식 창이 닫혔거나 열리지 않았습니다.");
-        }
-    }
-</script>
+			}
+
+
+
+        </script>
+
+    </div>
+
 </body>
-
 
 </html>
