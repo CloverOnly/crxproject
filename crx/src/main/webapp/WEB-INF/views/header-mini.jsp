@@ -9,10 +9,10 @@
     <meta charset="UTF-8">
     <style>
         .miniheader {
-            height: 30px; /* 원하는 높이 */
+            height: 30px; 
             background-color: rgb(84, 130, 53);
             display: flex;
-            justify-content: flex-end; /* 오른쪽으로 정렬 */
+            justify-content: flex-end; 
             align-items: center;
         }
 
@@ -33,7 +33,7 @@
             <a class="minilist" href="#">
                 <span>로그아웃</span>
             </a>
-            <a class="minilist" href="#">
+            <a class="minilist" href="mypage.do">
                 <span>마이페이지</span>
             </a>
         </div>

@@ -51,44 +51,44 @@
 </style>
 </head>
 <body>	 
-<jsp:include page="header.jsp" />
-<div class="all">
-	<div class="maintitle">
-		<h1>이용내역</h1>
-		<hr>
-	</div>
-	<br>  
-	<div>
+	<jsp:include page="header.jsp" />
+	<div class="all">
+		<div class="maintitle">
+			<h1>이용내역</h1>
+			<hr>
+		</div>
+		<br>  
+		<div>
+			<br>
+			<ul class="nav nav-tabs">
+				<li class="minititle nav-item">
+					<a class="nav-link" href="management.do">예매관리</a>
+				</li>
+				<li class="minititle nav-item">
+					<a class="nav-link active bg-light" aria-current="page" href="usageDetails.do">이용내역</a>
+				</li>
+			</ul>
+		</div>
+		
+		<!-- 설명 -->
+		<div class="guide">
+			<br>
+			<h5 style="text-align: center;">'sessionId'고객님의 발권 및 환불 내역을 확인하실 수 있습니다.</h5>
+			<br>
+		</div>
+		
+		<!-- 테이블 -->
 		<br>
-		<ul class="nav nav-tabs">
-			<li class="minititle nav-item">
-				<a class="nav-link" href="management.do">예매관리</a>
-			</li>
-			<li class="minititle nav-item">
-				<a class="nav-link active bg-light" aria-current="page" href="usageDetails.do">이용내역</a>
-			</li>
-		</ul>
-	</div>
-	
-	<!-- 설명 -->
-	<div class="guide">
+		<table class="ud">		
+			<th style="text-align: center;">승차 일자</th>
+			<td style="text-align: center;"><input type="date" id="Date" name="lostItemRegDate">~<input type="date" id="Date" name="lostItemRegDate">	</td>					
+		</table>  
+		
+		<!-- 조회하기 버튼 -->
 		<br>
-		<h5 style="text-align: center;">'sessionId'고객님의 발권 및 환불 내역을 확인하실 수 있습니다.</h5>
-		<br>
+		<div style="text-align: center;">
+			<button type="button" class="btn btn-success" >조회하기</button>
+		</div>
 	</div>
-	
-	<!-- 테이블 -->
-	<br>
-	<table class="ud">		
-		<th style="text-align: center;">승차 일자</th>
-		<td style="text-align: center;"><input type="date" id="Date" name="lostItemRegDate">~<input type="date" id="Date" name="lostItemRegDate">	</td>					
-	</table>  
-	
-	<!-- 조회하기 버튼 -->
-	<br>
-	<div style="text-align: center;">
-		<button type="button" class="btn btn-success" >조회하기</button>
-	</div>
-</div>
 </body>
 </html>

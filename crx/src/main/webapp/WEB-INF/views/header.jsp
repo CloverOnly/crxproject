@@ -3,6 +3,10 @@
 <%
     String schoolVO = (String) session.getAttribute("schoolVO");
 %>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -124,7 +128,7 @@
         }
 
         .submenu a {
-			font-size:14px;
+			font-size:13px;
 			font-family: monospace;
             text-decoration: none;
             color: black;
@@ -192,9 +196,9 @@
             <div class="dropdown mega-menu">
                 <div>
                     <ul class="submenu">
-                        <li><a href="">승차권 예매</a></li>
-                        <li><a href="">발권/취소/변경</a></li>
-                        <li><a href="">결제</a></li>
+                        <li><a href="ticket.do">승차권 예매</a></li>
+                        <li><a href="management.do">발권/취소/변경</a></li>
+                        <li><br></li>
 						<li><br></li>
 						<li><br></li>
 						<li><br></li>
@@ -216,7 +220,7 @@
                 </div>
             </div>
         </li>
-        <li><a href=""><img src="../img/logo.PNG" alt="Logo"></a>
+        <li><a href="main.do"><img src="../img/logo.gif" alt="Logo"></a>
             <div class="dropdown mega-menu logo">
                 <div>
                     <ul>                       
@@ -236,7 +240,7 @@
                     <ul class="submenu">
                         <li><a href="">종합이용안내</a></li>
                         <li><a href="">승차권 이용안내</a></li>
-                        <li><a href="">정차역 이용안내</a></li>
+                        <li><a href="hwacheon.do">정차역 이용안내</a></li>
                         <li><a href="">지연배상 신청</a></li>
 						<li><br></li>
 						<li><br></li>
@@ -248,8 +252,8 @@
             <div class="dropdown mega-menu">
                 <div>
                     <ul class="submenu">
-                        <li><a href="">지역별 여행상품</a></li>
-                        <li><a href="">관광 열차</a></li>
+                        <li><a href="localtour.do">지역별 여행상품</a></li>
+                        <li><a href="tourtrain.do">관광 열차</a></li>
 						<li><br></li>
 						<li><br></li>
 						<li><br></li>
