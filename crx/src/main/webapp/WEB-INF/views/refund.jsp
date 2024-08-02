@@ -8,6 +8,16 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <title>환불</title>
+<script>
+	function re() {
+		if(!confirm("정말 환불하시겠습니까?")){
+		    alert("환불이 취소되었습니다.");
+		}else{
+		    alert("정상적으로 환불되었습니다.");
+			location.href="refundEnd.do";
+		}
+	}
+</script>
 <style>
 	.all{
 		width: 1200px;
@@ -110,7 +120,7 @@
 	<!-- 조회하기 버튼 -->
 	<br>
 	<div style="text-align: center;">
-		<button type="button" class="btn btn-success" >환불완료</button>
+		<button type="button" class="btn btn-success" onclick="re()">환불완료</button>
 	</div>
 </div>
 </body>

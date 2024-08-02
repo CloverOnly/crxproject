@@ -9,11 +9,10 @@
 </head>
 <body>
     <br>
-    <b><font size="5" color="gray">역 명</font></b>
     <br><br>
  
-    <button class="cInput" onclick="setParentText(this)">대전</button>  
-	<button class="cInput" onclick="setParentText(this)">서울</button>  
+    <button class="cInput" data-value="NAT011668" onclick="setParentText(this)">대전</button>  
+	<button class="cInput" data-value="NAT010000" onclick="setParentText(this)">서울</button>  
 	<button class="cInput" onclick="setParentText(this)">울산</button>  
 	<button class="cInput" onclick="setParentText(this)">강원도</button>  
 	<button class="cInput" onclick="setParentText(this)">대천</button>  

@@ -95,13 +95,13 @@
                     <br>
 					<div class="rt">
 					    <label for="arrplacename">출발역</label>
-					    <input id="arrplacename" name="arrplacename" type="text" class="inp200" value="대전" title="출발역">
+					    <input id="arrplacename" name="arrplacename" type="text" class="inp200" value="" title="출발역">
 					    <input type="button" value="조회" onclick="openChild()">
 					    &nbsp;&nbsp;
 					    <i id="swapIcon" class="bi bi-arrow-repeat" onclick="swapStations()"></i>
 					    &nbsp;&nbsp;
 					    <label for="depplacename">도착역</label>
-					    <input id="depplacename" name="depplacename" type="text" class="inp200" value="서울" title="도착역">
+					    <input id="depplacename" name="depplacename" type="text" class="inp200" value="" title="도착역">
 					    <input type="button" value="조회" onclick="openChild2()">
 					</div>
 
@@ -186,10 +186,10 @@
                     <div class="rt">
                         <label id="trainType">차종구분</label>
                         &nbsp;
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="00" value="KTX">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="00" value="00">
                         <label class="form-check-label" for="KTX">KTX</label>
                         &nbsp;&nbsp;
-                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="01" value="ITX-새마을">
+                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="08" value="08">
                         <label class="form-check-label" for="ITX-새마을">ITX-새마을</label>
                     </div>
 
@@ -208,37 +208,38 @@
 		
 		
         <script>
-			function formatDateToYYYYMMDDHH(dateStr, timeStr) {
-			    var dateParts = dateStr.split('-');
-			    var year = dateParts[0];
-			    var month = dateParts[1];
-			    var day = dateParts[2];
-			    var hour = timeStr.padStart(2, '0');
-			    return `${year}${month}${day}${hour}`;
-			}
+			
 
 			function fetchTicketInfo() {
 			    var depPlaceId = document.getElementById('arrplacename').value;
 			    var arrPlaceId = document.getElementById('depplacename').value;
-			    var depDate = document.getElementById('Date').value;
+			    var arrplandtime = document.getElementById('arrplandtime').value;
 			    var depTime = document.getElementById('timeSelect').value;
-			    var formattedDepPlandTime = formatDateToYYYYMMDDHH(depDate, depTime);
-			    var seatType = document.querySelector('select').value;  // 좌석종류 선택
+			    
 			    var trainType = document.querySelector('input[name="flexRadioDefault"]:checked').value;
+				
 
 			    var xhr = new XMLHttpRequest();
 			    var serviceKey = 'KOyx%2F5iXteTdFA1wcSF1KvBTsEQcHMa8cFsrBwLTM6EGpTydPaVEtn4IjjQrwiIxqBvpc%2Bqi4NM9izQQfHzT3w%3D%3D'; // 서비스 키
 			    var queryParams = '?' + encodeURIComponent('serviceKey') + '=' + encodeURIComponent(serviceKey) +
+					'&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1') +
+					'&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10') +
+					'&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json');
 			        '&' + encodeURIComponent('depPlaceId') + '=' + encodeURIComponent(depPlaceId) +
 			        '&' + encodeURIComponent('arrPlaceId') + '=' + encodeURIComponent(arrPlaceId) +
-			        '&' + encodeURIComponent('depPlandTime') + '=' + encodeURIComponent(formattedDepPlandTime) +
-			        '&' + encodeURIComponent('trainGradeCode') + '=' + encodeURIComponent(seatType) +
-			        '&' + encodeURIComponent('numOfRows') + '=' + encodeURIComponent('10') +
-			        '&' + encodeURIComponent('pageNo') + '=' + encodeURIComponent('1') +
-			        '&' + encodeURIComponent('_type') + '=' + encodeURIComponent('json'); // JSON 응답 요청
-
-				xhr.open('GET', 'https://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey=KOyx%2F5iXteTdFA1wcSF1KvBTsEQcHMa8cFsrBwLTM6EGpTydPaVEtn4IjjQrwiIxqBvpc%2Bqi4NM9izQQfHzT3w%3D%3D&pageNo=' + 
-				'1&numOfRows=10&_type=json&depPlaceId=NAT010000&arrPlaceId=NAT011668&depPlandTime=20240801&trainGradeCode=00');
+			        '&' + encodeURIComponent('depPlandTime') + '=' + encodeURIComponent(arrplandtime) +
+			        '&' + encodeURIComponent('trainGradeCode') + '=' + encodeURIComponent(trainType);
+				
+				console.log(depPlaceId);
+				console.log(arrPlaceId);
+				console.log(depPlandTime);
+				console.log(trainGradeCode)
+				console.log(queryParams);
+				xhr.open('GET', 'https://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo' + queryParams);
+				
+				//	'https://apis.data.go.kr/1613000/TrainInfoService/getStrtpntAlocFndTrainInfo?serviceKey=KOyx%2F5iXteTdFA1wcSF1KvBTsEQcHMa8cFsrBwLTM6EGpTydPaVEtn4IjjQrwiIxqBvpc%2Bqi4NM9izQQfHzT3w%3D%3D
+				//	&pageNo=1&numOfRows=10&_type=json&depPlaceId=NAT010000&arrPlaceId=NAT011668&depPlandTime=20240801&trainGradeCode=00'
+				
 			    xhr.onreadystatechange = function () {
 			        if (this.readyState == 4) {
 			            if (this.status == 200) {

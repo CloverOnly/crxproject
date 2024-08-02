@@ -8,6 +8,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <title>예매관리</title>
+	
 <style>
 	.all{
 		width: 1200px;
@@ -66,7 +67,7 @@
 		<!-- 설명 -->
 		<div class="guide">
 			<p class="guidep">'sessionId'고객님의 예약 및 발권내역은 아래와 같습니다.<br>
-				출발시간 이전까지 예약한 승차권을 발권 받지 않은 경우 자동 예약 좌석에 자동으로 취소 되며,<br>
+				출발시간 이전까지 예약한 승차권을 발권 받지 않은 경우 자동 예약 좌석에 자동으로 취소 되며,
 				위약금이 발생합니다.</p>
 		</div>
 		
@@ -100,7 +101,7 @@
 						<td>#</td>
 						<td>#</td>
 						<td>#</td>
-						<td><button type="button" class="btn btn-success">환불하기</button></td>											
+						<td><button type="button" class="btn btn-success" onclick="location.href='refund.do'">환불하기</button></td>											
 					</tr>	
 			    </tr>
 			</table>
