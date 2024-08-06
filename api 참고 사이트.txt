@@ -1,0 +1,32 @@
+코레일
+https://blog.naver.com/kbs4674/221237115010
+
+https://bongra.tistory.com/71
+
+https://katieyoon-the-developer.tistory.com/10
+
+https://velog.io/@hee_jun/%EA%B
+3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0-API-%ED%99%9C%EC%9A%A9%ED%95%98%EA%B8%B0
+
+https://velog.io/@yujinaa/%EC%98%A4%ED%94%88-API-%EA%B3%B5%EA%B3%B5%EB%8D%B0%EC%9D%B4%ED%84%B0-JSON-%ED%8C%8C%EC%8B%B1%ED%95%98%EA%B8%B0
+
+카카오맵 api
+https://apis.map.kakao.com/web/sample/addMapClickEventWithMarker/
+
+카카오 챗봇 api
+https://annajinee.tistory.com/19
+https://foot-develop.tistory.com/21
+
+네이버페이 -https://lims-dev.tistory.com/34
+-https://developer.pay.naver.com/docs/v2/api
+
+portOne 환불
+https://portone.gitbook.io/docs/auth/guide-2
+
+https://recoderr.tistory.com/10
+
+부모 자식 value값 가져오기
+var parentValue = opener.document.getElementById("parentId").value;
+
+
+
