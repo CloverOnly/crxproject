@@ -1,0 +1,31 @@
+ticket.do
+
+all - 전체
+minititle - 일반승차권 제목
+nav nva-tabs - 일반, crx 승차권 탭기능
+mid - 조회 기능 묶음
+#station - 출발, 도착역
+#st - 출발 일, 시
+#Date - 달력 
+#formattedDate - YYYYMMDD ex)20240810
+#timeSelect - 출발 시간
+#personnel - 성인 인원 
+#child - 어린이 인원
+#seattype - 좌석종류
+#trainType - 차종구분
+search - 조회
+#results - 오류시 출력
+checkTrain - 조회 테이블 전체
+
+JavaScript
+
+formatDate() - 달력값 하이폰 제거후 불러오기 
+fetchTicketInfo() - 공공데이터 열차 api값 불러오기
+formatTime() - 시간 구분 ex)시 : 분
+swapStations() - 출발역 도착역 및 히든값 바꾸기
+openChildValue, setChildValue2() - 역 조회(자식) 창 열기
+setChildValue(), setChildText2() - 역 조회(자식) 창 에서 값 가져오기
+seatTicket() - 좌석 조회(자식) 창 열기
+seatTicketValue() - 좌석 선택 값 가져오기 
+ 
+  
