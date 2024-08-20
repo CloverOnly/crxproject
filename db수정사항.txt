@@ -1,2 +1,26 @@
 trainpay
 -carno 추가
+-duration 추가
+
+
+
+
+
+
+테이블
+CREATE TABLE SeatReservation (
+    id INT AUTO_INCREMENT PRIMARY KEY,        -- 기본키 (자동 증가)
+    selectedSeats VARCHAR(255) NOT NULL,      -- 선택된 좌석 (예: "1A,2B,3C")
+    hocha VARCHAR(50) NOT NULL,               -- 선택된 호차 (예: "1호차" 또는 "2호차")
+    startname VARCHAR(100) NOT NULL,          -- 출발지
+    endname VARCHAR(100) NOT NULL,            -- 도착지
+    seatType VARCHAR(50) NOT NULL,            -- 좌석 종류 (예: "일반", "우등")
+    startdate DATE NOT NULL,                  -- 출발 날짜
+    trainType VARCHAR(50) NOT NULL,           -- 기차 종류 (예: "KTX", "ITX")
+    personnelCount INT NOT NULL,              -- 인원 수
+    childCount INT NOT NULL,                  -- 어린이 수
+    trainno VARCHAR(50) NOT NULL,             -- 기차 번호
+    depTime TIME NOT NULL,                    -- 출발 시간
+    arrTime TIME NOT NULL,                    -- 도착 시간
+    duration VARCHAR(50) NOT NULL                    -- 소요 시간
+);
