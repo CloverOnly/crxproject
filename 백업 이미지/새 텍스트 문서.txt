@@ -1,0 +1,66 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+	
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.crx.dao.CusDAO">
+	<resultMap type="CusVO" id="Result">
+		<!-- 고객안내 -->
+		
+		<!-- 사용자 -->
+		<result property="userid" column="userid" />
+		<result property="userpwd" column="userpwd" />
+		<result property="username" column="username" />
+		<result property="user_userid" column="user_userid" />
+		
+		<!-- 사원 -->
+		<result property="memid" column="memid" />
+		<result property="mempwd" column="mempwd" />
+		<result property="memname" column="memname" />
+		<result property="memlevel" column="memlevel" />
+		<result property="member_memid" column="member_memid" />
+		
+		<!-- 공지사항 -->
+		<result property="nono" column="nono" />
+		<result property="notitle" column="notitle" />
+		<result property="nocontent" column="nocontent" />
+		<result property="nodate" column="nodate" />
+		<result property="nofile" column="nofile" />
+		<result property="nohit" column="nohit" />
+		
+		<!-- FAQ -->
+		<result property="faqno" column="faqno" />
+		<result property="faqtitle" column="faqtitle" />
+		<result property="faqcontent" column="faqcontent" />
+		<result property="faqdate" column="faqdate" />
+		<result property="faqhit" column="faqhit" />
+		
+		<!-- 유실물 -->
+		<result property="lostno" column="lostno" />
+		<result property="losttitle" column="losttitle" />
+		<result property="lostcontent" column="lostcontent" />
+		<result property="lostdate" column="lostdate" />
+		<result property="lostplace" column="lostplace" />
+		<result property="losthit" column="losthit" />
+		
+		<!-- Q&A -->
+		<result property="qno" column="qno" />
+		<result property="qtitle" column="qtitle" />
+		<result property="qcontent" column="qcontent" />
+		<result property="qdate" column="qdate" />
+		<result property="qstatus" column="qstatus" />
+		<result property="qhit" column="qhit" />
+		<result property="rno" column="rno" />
+		<result property="rtitle" column="rtitle" />
+		<result property="rcontent" column="rcontent" />
+		<result property="rdate" column="rdate" />
+		<result property="qna_qno" column="qna_qno" />		
+	</resultMap>
+
+	<!-- 공지사항 -->
+	<select id="noticeList" resultMap="Result">
+		SELECT * 
+		FROM notice 
+		JOIN member
+		ON notice.member_memid = member.memid
+		ORDER BY nono DESC
+	</select>
+</mapper>
